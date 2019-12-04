@@ -22,7 +22,7 @@ export default class Counter extends Component {
         this.setState((prevState) => {
             console.log('Wywołuję na click w ButtonsPanel metodę utworzoną w rodzicu (Counter)');
             return {
-                value: prevState.value + this.state.step
+                value: parseInt(prevState.value) + parseInt(this.state.step)
             }
         })
     }
@@ -33,7 +33,6 @@ export default class Counter extends Component {
                 value: 0
             }
         })
-        
     }
 
     stepReset = () => {
@@ -43,11 +42,14 @@ export default class Counter extends Component {
                 step: 1
             }
         })
+        
     }
     changeStep = (newStep) => {
+        console.log(newStep);
+        
         this.setState(() => {
-            return{
-            step: newStep
+            return {
+                step: newStep
             }
         })    
     }
@@ -57,7 +59,7 @@ export default class Counter extends Component {
             <div className="counter-component">
                 <Title valueCounter={this.state.value} />
                 <ButtonsPanel actionCallback={this.changeValue} resetCallback={this.resetCounter} initStep={this.stepReset}/>
-                <Step updateStep={this.changeStep} />
+                <Step step={this.state.step} updateStep={this.changeStep} />
             </div>
         )
     }

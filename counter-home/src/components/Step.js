@@ -3,16 +3,17 @@ import React, {Component} from 'react';
 class Step extends Component {
     
 
-    updateStep() {
-        let newStep = Number.this._inputStep.value;    
-        this.props.updateStep(newStep);
+    updateStep = () => {
+        // console.log(this._inputStep.value);
+       
+        this.props.updateStep(this._inputStep.value);
     }
     
 
     render() {
         return(
             <div className="step-componenet">
-                <input type="number" ref={(data) => {this._inputStep = data}} placeholder="Ustaw skok" onChange={this.props.updateStep}/>
+                <input type="number" ref={(data) => this._inputStep = data} placeholder="Ustaw skok" onChange={this.updateStep} value={this.props.step} />
             </div>
         )
     }
